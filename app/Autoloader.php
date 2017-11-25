@@ -3,6 +3,7 @@
 class Autoloader
 {
     /**
+     * The simplest auto loader
      * Autoload class by name
      *
      * @param string $className
