@@ -37,9 +37,6 @@ class EmailFormHandler
             }
         }
 
-//        var_dump($errors);
-//        exit;
-
         return $errors;
     }
 }

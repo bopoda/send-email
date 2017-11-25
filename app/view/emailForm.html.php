@@ -21,31 +21,37 @@
 
             <form role="form" method="POST" id="sendEmailForm" action="/"  enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="subject" class="required"> Subject:</label>
-                    <input type="text" class="form-control" id="subject" name="subject" maxlength="255" required>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="required"> Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" maxlength="255" required>
+                    <label for="subject"> Subject:</label>
+                    <input type="text" class="form-control" id="subject" name="subject" maxlength="255">
                 </div>
                 <div class="form-group">
                     <label for="name" > Name:</label>
                     <input type="text" class="form-control" id="name" name="name" maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label for="name"> Message:</label>
-                    <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Your Message Here" maxlength="4000" rows="7"></textarea>
+                    <label for="email" class="required"> Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" maxlength="255" required>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="required"> Message:</label>
+                    <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Your Message Here" maxlength="4000" rows="7" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="name"> Select a file to Upload:</label>
-                    <input type="file" class="form-control" id="image" name="image">
+                    <input type="file" class="form-control" name="image[]">
+                </div>
+                <div class="form-group">
+                    <label for="name"> Select a file to Upload:</label>
+                    <input type="file" class="form-control" name="image[]">
                 </div>
                 <input type="submit" class="btn btn-lg btn-success pull-right" id="sendBtn" value="Send!" />
             </form>
         </div>
 
         <div class="col-md-6 col-md-offset-3">
-            <!--            <div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Email was send successfully!</h3> </div>-->
+            <?php if ($this->sendEmail) : ?>
+                <div class="text-success">Email send</div>
+            <?php endif; ?>
             <?php foreach ($this->errors as $error): ?>
                 <div class="text-danger"><?=$error;?></div>
             <?php endforeach; ?>

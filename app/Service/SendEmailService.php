@@ -3,6 +3,7 @@
 namespace Service;
 
 // Import PHPMailer classes into the global namespace
+use Core\Config;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -110,9 +111,10 @@ class SendEmailService
     public function send()
     {
         $phpMailer = new PHPMailer(true);
+        $mailerParameters = Config::getConfigValue('mailer');
         try {
             //Server settings
-            $phpMailer->SMTPDebug = 2;                                 // Enable verbose debug output
+            $phpMailer->SMTPDebug = 0; //2                                // Enable verbose debug output
             $phpMailer->isMail();                                      // Set mailer to use SMTP
             $phpMailer->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
             $phpMailer->SMTPAuth = true;                               // Enable SMTP authentication
@@ -126,15 +128,14 @@ class SendEmailService
                 $this->getName()
             );
 
-//            $phpMailer->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-//            $phpMailer->addAddress('ellen@example.com');               // Name is optional
-//            $phpMailer->addReplyTo('info@example.com', 'Information');
-//            $phpMailer->addCC('cc@example.com');
-//            $phpMailer->addBCC('bcc@example.com');
+            $phpMailer->addAddress($mailerParameters['recepient']);     // Add a recipient
 
             //Attachments
-//            $phpMailer->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-//            $phpMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+            if ($this->getAttachments()) {
+                foreach ($this->getAttachments() as $attachment) {
+                    $phpMailer->addAttachment($attachment);         // Add attachments
+                }
+            }
 
             //Content
             $phpMailer->isHTML(true);                                  // Set email format to HTML

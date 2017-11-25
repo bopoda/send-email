@@ -11,17 +11,19 @@ class EmailController
     public function emailFormAction()
     {
         $errors = [];
+        $sendEmail = false;
 
         if ($_POST) {
             $emailFormHandler = new EmailFormHandler();
             $errors = $emailFormHandler->handlePostAction($_POST, $_FILES);
             if (!$errors) {
-                //redirect to avoid send form again
+                $sendEmail = true;
             }
         }
 
         return new HttpResponse(View::create('emailForm.html.php', [
             'errors' => $errors,
+            'sendEmail' => $sendEmail,
         ])->render());
     }
 }

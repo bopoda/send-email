@@ -25,6 +25,11 @@ class EmailForm
     /**
      * @var array
      */
+    private $filesNames = [];
+
+    /**
+     * @var array
+     */
     private $expectedFields = [
         'message',
         'subject',
@@ -36,9 +41,8 @@ class EmailForm
      * @var array
      */
     private $nonEmptyFields = [
-        'subject',
+        'message',
         'email',
-        'name',
     ];
 
     public function __construct(array $postData, array $filesData)
@@ -74,7 +78,11 @@ class EmailForm
 
         $this->errors = $errors;
 
-        return !$errors;
+        if (!$this->errors) {
+            $this->errors = $this->moveFilesFromTmpDir();
+        }
+
+        return !$this->errors;
     }
 
     /**
@@ -117,16 +125,70 @@ class EmailForm
         return $this->errors;
     }
 
-    //TODO:
+    /**
+     * @return bool
+     */
     public function hasAttachments()
     {
-        return false;
-//        return (bool) $this->filesData;
+        return (bool) $this->filesNames;
     }
 
-    //TODO:
+    /**
+     * @return array
+     */
     public function getAttachments()
     {
-        return [];
+        $attachments = [];
+
+        foreach ($this->filesNames as $name) {
+            $attachments[] = $this->getDestinationByName($name);
+        }
+
+        return $attachments;
+    }
+
+    /**
+     * Should be validation of files
+     *
+     * @return array  Array of errors
+     */
+    private function moveFilesFromTmpDir()
+    {
+        if (empty($this->filesData['image']['tmp_name'])) {
+            return [];
+        }
+
+        $errors = [];
+        foreach ($this->filesData['image']['tmp_name'] as $tmpFile) {
+            if (!$tmpFile) {
+                continue;
+            }
+
+            $name = basename($tmpFile);
+            $destination = $this->getDestinationByName($name);
+            $result = move_uploaded_file(
+                $tmpFile,
+                $destination
+            );
+
+            if ($result) {
+                $this->filesNames[] = $name;
+            } else {
+                $errors[] = 'Can not move file to ' . $destination;
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
+     * Get full path to file on server
+     *
+     * @param string $name
+     * @return string
+     */
+    private function getDestinationByName($name)
+    {
+        return ROOT_DIR . '/assets/uploads/' . $name;
     }
 }

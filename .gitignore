@@ -1,3 +1,4 @@
 .*
 !.keepdir
+assets/uploads
 vendor
