@@ -6,9 +6,9 @@ return [
         'controller' => '\Controller\EmailController',
         'action' => 'emailFormAction',
     ],
-    'sendEmail' => [
-        'url' => '/sendEmail',
+    'listEmail' => [
+        'url' => '/list',
         'controller' => '\Controller\EmailController',
-        'action' => 'sendEmailAction',
+        'action' => 'listAction',
     ],
 ];

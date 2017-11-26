@@ -8,6 +8,11 @@ namespace Service;
 class EmailForm
 {
     /**
+     * Server path to uploaded attachments
+     */
+    const ASSET_UPLOAD_PATH = '/assets/uploads/';
+
+    /**
      * @var array
      */
     private $errors = [];
@@ -189,6 +194,6 @@ class EmailForm
      */
     private function getDestinationByName($name)
     {
-        return ROOT_DIR . '/assets/uploads/' . $name;
+        return ROOT_DIR . self::ASSET_UPLOAD_PATH . $name;
     }
 }

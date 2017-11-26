@@ -64,4 +64,20 @@ class EmailModel extends AbstractModel
         ]);
     }
 
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function fetch($limit = 100, $offset = 0)
+    {
+        $sql = "SELECT * FROM {$this->getTableName()} ORDER BY id DESC LIMIT :offset, :limit";
+
+        $preparedResult = $this->getPdo()->prepare($sql);
+        $preparedResult->bindValue(':limit', $limit, \PDO::PARAM_INT);
+        $preparedResult->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $preparedResult->execute();
+
+        return $preparedResult->fetchAll();
+    }
 }

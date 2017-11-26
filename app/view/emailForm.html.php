@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-1">
             <h2>Send email form</h2>
 
             <form role="form" method="POST" id="sendEmailForm" action="/"  enctype="multipart/form-data">
@@ -44,17 +44,19 @@
                     <label for="name"> Select a file to Upload:</label>
                     <input type="file" class="form-control" name="image[]">
                 </div>
-                <input type="submit" class="btn btn-lg btn-success pull-right" id="sendBtn" value="Send!" />
+                <input type="submit" class="btn btn-lg btn-info pull-right" id="sendBtn" value="Send!" />
             </form>
         </div>
 
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-1">
             <?php if ($this->sendEmail) : ?>
                 <div class="text-success">Email send</div>
             <?php endif; ?>
             <?php foreach ($this->errors as $error): ?>
                 <div class="text-danger"><?=$error;?></div>
             <?php endforeach; ?>
+
+            <h3><a href="/list">Link to admin panel (list)</a></h3>
         </div>
     </div>
 </div>

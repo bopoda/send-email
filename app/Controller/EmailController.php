@@ -4,10 +4,13 @@ namespace Controller;
 
 use Core\Response\HttpResponse;
 use Core\View;
+use Model\EmailModel;
 use Service\EmailFormHandler;
 
 class EmailController
 {
+    const PER_PAGE = 10;
+
     public function emailFormAction()
     {
         $errors = [];
@@ -24,6 +27,16 @@ class EmailController
         return new HttpResponse(View::create('emailForm.html.php', [
             'errors' => $errors,
             'sendEmail' => $sendEmail,
+        ])->render());
+    }
+
+    public function listAction()
+    {
+        $emailModel = new EmailModel();
+        $emails = $emailModel->fetch(self::PER_PAGE);
+
+        return new HttpResponse(View::create('list.html.php', [
+            'emails' => $emails,
         ])->render());
     }
 }
