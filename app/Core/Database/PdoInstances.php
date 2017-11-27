@@ -32,7 +32,8 @@ class PdoInstances
             self::$pdoInstances[$databaseName] = new \PDO(
                 $dsn,
                 $dbCredentials['username'],
-                $dbCredentials['password']
+                $dbCredentials['password'],
+                [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
             );
         }
 

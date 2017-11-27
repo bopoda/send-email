@@ -139,6 +139,8 @@ class EmailForm
     }
 
     /**
+     * Get attachments (full path to each file on server)
+     *
      * @return array
      */
     public function getAttachments()
@@ -150,6 +152,14 @@ class EmailForm
         }
 
         return $attachments;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFilesNames()
+    {
+        return $this->filesNames;
     }
 
     /**

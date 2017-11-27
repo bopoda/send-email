@@ -39,7 +39,7 @@ class EmailModel extends AbstractModel
             ':email' => $emailForm->getEmail(),
             ':subject' => $emailForm->getSubject(),
             ':message' => $emailForm->getMessage(),
-            ':attachments' => $emailForm->hasAttachments() ? json_encode($emailForm->getAttachments()) : '',
+            ':attachments' => $emailForm->hasAttachments() ? json_encode($emailForm->getFilesNames()) : '',
             ':added_at' => date('Y-m-d H:i:s'),
         ]);
 

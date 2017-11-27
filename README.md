@@ -1,6 +1,6 @@
 # sendEmail
 
-The easiest way to run application:
+The easiest way to run an application:
 
 - composer install
 

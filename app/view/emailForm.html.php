@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="/assets/style.css">
-<!--    <script src="/assets/sendEmail.js"></script>-->
+    <script src="/assets/sendEmail.js"></script>
 </head>
 <body>
 <div class="container">
@@ -36,15 +36,16 @@
                     <label for="name" class="required"> Message:</label>
                     <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Your Message Here" maxlength="4000" rows="7" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="name"> Select a file to Upload:</label>
+                <div class="form-group chooseFileInput">
+                    <label for="name"> Select an Attachment:</label>
                     <input type="file" class="form-control" name="image[]">
                 </div>
                 <div class="form-group">
-                    <label for="name"> Select a file to Upload:</label>
-                    <input type="file" class="form-control" name="image[]">
+                    <span class="glyphicon glyphicon-plus" id="attachFilePlusBtn" aria-hidden="true"></span>
                 </div>
-                <input type="submit" class="btn btn-lg btn-info pull-right" id="sendBtn" value="Send!" />
+                <div class="form-group">
+                    <input type="submit" class="btn btn-lg btn-info pull-right" id="sendBtn" value="Send!" />
+                </div>
             </form>
         </div>
 

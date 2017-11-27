@@ -115,7 +115,7 @@ class SendEmailService
         try {
             //Server settings
             $phpMailer->SMTPDebug = 0; //2                                // Enable verbose debug output
-            $phpMailer->isMail();                                      // Set mailer to use SMTP
+            $phpMailer->isMail();                                      // $phpMailer->isSMTP() -- Set mailer to use SMTP
             $phpMailer->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
             $phpMailer->SMTPAuth = true;                               // Enable SMTP authentication
             $phpMailer->Username = 'user@example.com';                 // SMTP username

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="/assets/style.css">
-<!--    <script src="/assets/sendEmail.js"></script>-->
 </head>
 <body>
 <div class="container">
@@ -48,7 +47,7 @@
                         -
                     <?php endif; ?>
                 </td>
-                <td><?=$email['success'];?></td>
+                <td><?=$email['success'] ? 'Yes' : 'No';?></td>
             </tr>
             <?php endforeach; ?>
             </tbody>

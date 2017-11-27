@@ -1,3 +1,9 @@
 #sendEmailForm label.required {
     color:orange;
 }
+.glyphicon {
+    font-size: 20px;
+}
+#attachFilePlusBtn {
+    cursor:pointer;
+}
