@@ -40,8 +40,8 @@
                 <td>
                     <?php $attaches = json_decode($email['attachments']); ?>
                     <?php if ($attaches) : ?>
-                        <?php foreach ($attaches as $attach) : ?>
-                            <a href=""><?=$attach;?></a> <br />
+                        <?php foreach ($attaches as $file) : ?>
+                            <a target="_blank" href="<?=\Service\EmailForm::ASSET_UPLOAD_PATH . $file;?>"><?=$file;?></a> <br />
                         <?php endforeach; ?>
                     <?php else : ?>
                         -

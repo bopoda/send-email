@@ -174,12 +174,12 @@ class EmailForm
         }
 
         $errors = [];
-        foreach ($this->filesData['image']['tmp_name'] as $tmpFile) {
+        foreach ($this->filesData['image']['tmp_name'] as $i => $tmpFile) {
             if (!$tmpFile) {
                 continue;
             }
 
-            $name = basename($tmpFile);
+            $name = $this->getNewFileName($tmpFile, $this->filesData['image']['name'][$i]);
             $destination = $this->getDestinationByName($name);
             $result = move_uploaded_file(
                 $tmpFile,
@@ -205,5 +205,21 @@ class EmailForm
     private function getDestinationByName($name)
     {
         return ROOT_DIR . self::ASSET_UPLOAD_PATH . $name;
+    }
+
+    /**
+     * @param string $tmpName
+     * @param string $originalName
+     * @return string
+     */
+    private function getNewFileName($tmpName, $originalName)
+    {
+        $newName = basename($tmpName);
+        $ext = pathinfo($originalName, PATHINFO_EXTENSION);
+        if ($ext) {
+            $newName = $newName . '.' . $ext;
+        }
+
+        return $newName;
     }
 }
