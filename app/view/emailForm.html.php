@@ -10,8 +10,13 @@
     <!-- bootstrap theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/assets/style.css">
     <script src="/assets/sendEmail.js"></script>
+
+    <!-- wysiwyg -->
+    <script src="/vendor/froala/wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
+    <link rel="stylesheet" href="/vendor/froala/wysiwyg-editor/css/froala_editor.pkgd.min.css">
 </head>
 <body>
 <div class="container">
